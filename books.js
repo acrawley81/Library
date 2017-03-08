@@ -1,133 +1,105 @@
+
+//
+$(function () {
+  this.gMyBook1 = new NewBook("Programmig", "50", 50, "01/20/2016");
+  this.gMyBook2 = new NewBook("HTML/CSS", "TravisDoe", 150, "l/30/2015")
+  this.gMyBook3 = new NewBook("The Chrib", "TravisDoe", 150, "4/12/2012")
+  this.glib = new Lib();
+});
+
 //Digital Library using JavaScript
 //Use objects, functions, primitives loops and console debugging.
 //Must have a "books" array property.
 //constructer greater than 0, prototype, Create (Wireframe)
 //
-function NewBook (title, author, downloadable,soldout ){
+function NewBook(title, author, pages, date) {
 
-	//properties
-	this.title = title;
-	this.author = author;
-
-//local storage
-	// Store
-	localStorage.lastname = "Life of a Tank";
-	// Retrieve
-	document.getElementById("result").innerHTML = localStorage.lastname;
-
-
-//JSON Stringify
-var library = {"books"};
-var myJSON = JSON.stringify(library);
-document.getElementById("demo").innerHTML = myJSON;
-
-	//events
-	this.downloadable = downloadable ;
-	this.soldout = soldout;
-
-	//methods
-	this.opens=function(){
-		//opens to table of contents
-		alert("page1");
-	}
-
+  //properties
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.date = date;
 }
 
-//declaring variables and assigning new instances of our newBook class
-var book1 = new newBook("The Giver","Erik R.", true, false);
-var book2 = new newBook("Harry Potter","J.K R.", false, false);
+Lib.prototype.myBookArray = new Array();
 
-console.log(book1,book2);
-
-// uses open method
-book1.opens()
-
-//
-$(function() {
-  this.gMyBook1 = new Book("Programmig",50, "01/20/2016");
-  this.gMyBook2 = new Book("HTML/CSS":, "TravisDoe", 150, "l")
-  this.glib = new Lib();
-});
-
-var Lib = function()(newBook){
+var Lib = function () {
+  this.myBookArray.push(window.gMyBook1);
+  this.myBookArray.push(window.gMyBook2);
+  this.myBookArray.push(window.gMyBook3);
 };
+
 //working within the console
-lib.prototype.addbook = function(book) {
-	//logging information
-  consle.log('myBookArray');
-	this.mybookarray.push('book');
+lib.prototype.addbook = function (book) {
+  var addabook = new NewBook(book.title, book.author, book.pages, book.date);
+  for (var i = 0; i < this.myBookArray.length; i++) {
+    if (addabook.title === this.myBookArray[i].title) {
+      return false;
+    }
+  }
+  this.myBookArray.push(addabook);
+  return true;
 };
 
-lib.prototype.removeBookByTitle = function(title) {
-//loging information (f12)df
-  console.log('this.removeBookByTitle');
-this.mybookarray.push('book');
+lib.prototype.removeBookByTitle = function (title) {
+  for (var r = 0; r < this.myBookArray.lenght; i++) {
+    if (title == this.myBookArray[i].title) {
+      this.myBookArray.splice(i, 1);
+      return true;
+    }
+  }
+  return false;
 };
 
-lib.prototype.remBookByAuthor = function(authorName) {
-  console.log('this.remBookByAuthor');
+lib.prototype.remBookByAuthor = function (authorName) {
+  var rem_Author = false;
+  for (var r = 0; r < this.myBookArray.lenght; i++) {
+    if (authorName == this.myBookArray[i].author) {
+      this.myBookArray.splice(i, 1);
+      rem_Author = true;
+    }
+  }
+  return rem_Author;
 };
 
-lib.prototype.getRandomBook = function(randombk) {
-  console.log('getRandomBook');
+lib.prototype.getRandomBook = function (randombk) {
+  var temp = Math.random() * this.myBookArray.lenght;
+  return this.myBookArray[temp];
+}
+
+
+lib.prototype.getBookByTitle = function (BookbyTitle) {
+
+  for (var i = 0; i < this.myBookArray.length; i++) {
+    if (BookbyTitle == this.myBookArray[i].title) {
+      return this.myBookArray[i];
+    }
+  }
+  return false;
 };
 
-lib.prototype.getBookByTitle = function(BookbyTitle) {
-  console.log('getBookByTitle');
-};
+Lib.prototype.getRandomAuthorName = function () {
+  var temp = Math.random() * this.myBookArray.lenght;
+  return this.myBookArray[temp].author;
+}
 
-Lib.prototype.getRandomAuthorName = function() {
-  consol.log('getRandomAuthoraName');
-};
-
-function BookInfo(title, author, page, date) {
-           this.title = title;
-           this.author = author;
-           this.page = page;
-           this.date = date;
-           console.log(this);
- }
-// singleton
- class Book {
- public:
-      static
-      Book&
-      GetInstance() {
-          static Book singleton;
-          return singleton;
-      }
-		}
-
-
-//singleton
-var Ticker = function(){
-	var instance;
-	function creat(){
-		//props and Methods private
-		function add(interval,times,callback,name){
-			}
-		return {add:add};
-	} //singleton hint
-	return {getInstance:function(){
-		if(instance) instance = create();
-	}
-})();
-
-Ticker.getInstance();
+Lib.prototype.addBooks = function (addbooksArray) {
+  var num = 0;
+  for (var i = 0; i < addbooksArray.length; i++) {
+    if (this.addBook(addbooksArray[i])) {
+      num++;
+    }
+  }
+  return num;
+}
 
 
 
+Lib.prototype.getAuthors = function (){
+  
+}
 
- private:
-      explicit
-      Book() {}
 
-      virtual
-      ~Book() {}
- };
- private:
-      explicit
-      Book() {}
+Lib.prototype.getRandomAuthorName = function ()
 
-      virtual
-      ~Book() {}
+
